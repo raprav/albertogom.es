@@ -1,0 +1,121 @@
+/* floral bg used royalty free from https://subtlepatterns.com/ */
+html {
+  background: url(http://gomezisdan.com/images/greyfloral.png);
+}
+
+input#flip {
+  padding: 0px;
+  background: transparent;
+  border: none;
+  font-family: 'Vollkorn', serif;
+  font-size: 2em;
+  cursor: pointer;
+  position: relative;
+  z-index: 99;
+}
+
+:focus {
+  outline: none;
+}
+
+.fp-tableCell {
+  vertical-align: top;
+  height: 100vh !important;
+}
+
+.row {
+  width: 100%;
+  text-align: center;
+}
+
+img.postcard {
+  width: 80%;
+  -webkit-animation: twitch 20s ease-in infinite alternate;
+  animation: twitch 20s ease-in infinite alternate;
+}
+
+p.delay {
+  -webkit-animation: fade 6s linear;
+  animation: fade 6s linear;
+}
+
+
+/*animations*/
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0.0;
+  }
+  60% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0.0;
+  }
+  60% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+/*cards*/
+
+.container {
+  width: 80%;
+  text-align: center;
+  height: auto;
+  position: relative;
+  perspective: 800px;
+  margin: 40px auto 0px;
+}
+
+#card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1.5s;
+}
+
+#card figure {
+  margin: 0;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+#card .front {}
+
+#card .back {
+  transform: rotateY( 180deg);
+}
+
+
+/*to prevent the back of the card flickering prematurely*/
+
+#card.flipped .back {
+  -webkit-transform: translateZ(-1px);
+  transform: translateZ(-1px);
+}
+
+#card.flipped {
+  transform: rotateY( 180deg);
+}
+
+
+/*stops a glitch where the back of the postcard wont show until double the transistion time*/
+
+#card.flipped figure {
+  backface-visibility: visible;
+}
